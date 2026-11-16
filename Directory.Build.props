@@ -1,0 +1,17 @@
+<Project>
+  <!--
+    Gilt fuer alle Projekte. Ohne diese Einstellungen schreibt der Compiler den vollen Pfad
+    des Projektordners (samt Windows-Benutzername) in jede DLL - als Verweis auf die
+    Debug-Datei. PathMap ersetzt ihn durch "/_/", und im Release wird gar kein Verweis
+    mehr eingebettet. So enthaelt ein veroeffentlichtes Setup nichts vom Rechner, auf dem
+    es gebaut wurde.
+  -->
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+</Project>

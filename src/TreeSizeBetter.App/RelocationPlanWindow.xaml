@@ -1,0 +1,76 @@
+<Window x:Class="TreeSizeBetter.App.RelocationPlanWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:TreeSizeBetter.App.Shell"
+        xmlns:vm="clr-namespace:TreeSizeBetter.App.ViewModels"
+        Title="{loc:T plan.title}" Width="860" Height="620" MinWidth="620" MinHeight="380"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Background="{DynamicResource Bg0}" TextOptions.TextFormattingMode="Display" UseLayoutRounding="True">
+    <Grid Margin="20,18,20,16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock x:Name="HeadlineText" Style="{StaticResource Display}" FontSize="22" TextWrapping="Wrap" />
+            <TextBlock x:Name="SubText" Foreground="{DynamicResource FgDim}" TextWrapping="Wrap" Margin="0,6,0,14" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="Items">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type vm:PlanItem}">
+                        <Border x:Name="Card" Background="{DynamicResource Bg1}" CornerRadius="9" Padding="14,10" Margin="0,0,0,8"
+                                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border x:Name="Badge" CornerRadius="9" Padding="8,1" Background="#2A37C47F" Margin="0,0,10,0" VerticalAlignment="Center">
+                                            <TextBlock x:Name="BadgeText" Text="{Binding StateText}" FontSize="11.5" FontWeight="SemiBold" Foreground="{DynamicResource OkText}" />
+                                        </Border>
+                                        <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <TextBlock Margin="0,6,0,0" FontFamily="Consolas" FontSize="11.5" Foreground="{DynamicResource FgDim}" TextTrimming="CharacterEllipsis">
+                                        <Run Text="{Binding Source, Mode=OneWay}" /><Run Text="  →  " /><Run Text="{Binding Target, Mode=OneWay}" Foreground="{DynamicResource Accent}" />
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding IssueText}" TextWrapping="Wrap" Margin="0,6,0,0" Foreground="{DynamicResource WarnText}"
+                                               Visibility="{Binding IssueText, Converter={StaticResource EmptyToCollapsed}}" />
+                                    <TextBlock Text="{Binding NoteText}" TextWrapping="Wrap" Margin="0,4,0,0" Foreground="{DynamicResource FgDim}"
+                                               Visibility="{Binding NoteText, Converter={StaticResource EmptyToCollapsed}}" />
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" Text="{Binding BytesText}" FontSize="15" FontWeight="SemiBold"
+                                           VerticalAlignment="Top" Margin="16,0,0,0" />
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding HasWarnings}" Value="True">
+                                <Setter TargetName="Badge" Property="Background" Value="#2AF2C14E" />
+                                <Setter TargetName="BadgeText" Property="Foreground" Value="{DynamicResource WarnText}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsBlocked}" Value="True">
+                                <Setter TargetName="Badge" Property="Background" Value="#2AE5484D" />
+                                <Setter TargetName="BadgeText" Property="Foreground" Value="{DynamicResource BadText}" />
+                                <Setter TargetName="Card" Property="Opacity" Value="0.7" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <CheckBox Grid.Row="2" x:Name="AcceptWarnings" Margin="0,12,0,0" Checked="Accept_Changed" Unchecked="Accept_Changed"
+                  Content="{loc:T plan.acceptWarnings}" />
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
+            <Button Content="{loc:T common.cancel}" IsCancel="True" Margin="0,0,8,0" Padding="16,7" />
+            <Button x:Name="OkButton" Style="{StaticResource PrimaryButton}" IsDefault="True" Padding="18,7" Click="Ok_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,105 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ============================================================ Palette: Dunkel
+         Tiefes Graphit mit leichtem Blaustich, Akzent als Verlauf Blau -> Violett.
+         Die Abstufungen Bg0..Bg3 sind so gewaehlt, dass Flaechen ohne Rahmen
+         voneinander unterscheidbar bleiben. Jeder Schluessel hier muss es auch in
+         Palette.Light.xaml geben - die Oberflaeche holt ihn per DynamicResource. -->
+    <Color x:Key="Bg0Color">#0E1015</Color>
+    <Color x:Key="Bg1Color">#14171D</Color>
+    <Color x:Key="Bg2Color">#1A1E25</Color>
+    <Color x:Key="Bg3Color">#252A33</Color>
+    <Color x:Key="BorderColor">#2A3039</Color>
+    <Color x:Key="FgColor">#E8EBF2</Color>
+    <Color x:Key="AccentColor">#6E8BFF</Color>
+    <Color x:Key="AccentStartColor">#4F7CFF</Color>
+    <Color x:Key="AccentEndColor">#9A6BFF</Color>
+
+    <SolidColorBrush x:Key="Bg0" Color="{StaticResource Bg0Color}" />
+    <SolidColorBrush x:Key="Bg1" Color="{StaticResource Bg1Color}" />
+    <SolidColorBrush x:Key="Bg2" Color="{StaticResource Bg2Color}" />
+    <SolidColorBrush x:Key="Bg3" Color="{StaticResource Bg3Color}" />
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
+    <SolidColorBrush x:Key="Fg" Color="{StaticResource FgColor}" />
+    <SolidColorBrush x:Key="FgDim" Color="#97A0B0" />
+    <SolidColorBrush x:Key="FgFaint" Color="#5E6676" />
+    <SolidColorBrush x:Key="Accent" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentDim" Color="#3A4FA8" />
+    <SolidColorBrush x:Key="Warning" Color="#F0A85A" />
+    <SolidColorBrush x:Key="Danger" Color="#F06B5A" />
+
+    <!-- Zustandsfarben fuer Text und Abzeichen -->
+    <SolidColorBrush x:Key="OkText" Color="#5FD39A" />
+    <SolidColorBrush x:Key="WarnText" Color="#F2C14E" />
+    <SolidColorBrush x:Key="BadText" Color="#F0787C" />
+    <SolidColorBrush x:Key="WarnBoxBg" Color="#1F1A12" />
+    <SolidColorBrush x:Key="WarnBoxBorder" Color="#4A3A20" />
+    <SolidColorBrush x:Key="WarnBoxText" Color="#E3D3B0" />
+
+    <!-- Flaechen-Details -->
+    <SolidColorBrush x:Key="AltRow" Color="#1E2228" />
+    <SolidColorBrush x:Key="HoverGlow" Color="#14FFFFFF" />
+    <SolidColorBrush x:Key="RingTrack" Color="#30FFFFFF" />
+    <SolidColorBrush x:Key="ScrollThumb" Color="#3A414D" />
+    <SolidColorBrush x:Key="ScrollThumbHover" Color="#566070" />
+    <SolidColorBrush x:Key="ScrollThumbPressed" Color="#6E8BFF" />
+
+    <!-- Ecke zwischen den Scrollbalken und andere Systemflaechen -->
+    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource Bg1Color}" />
+
+    <!-- Kacheldiagramm -->
+    <SolidColorBrush x:Key="TreemapBg" Color="#121418" />
+    <SolidColorBrush x:Key="TreemapHeaderText" Color="#E4E7EC" />
+
+    <LinearGradientBrush x:Key="AccentGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource AccentStartColor}" Offset="0" />
+        <GradientStop Color="{StaticResource AccentEndColor}" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="AccentGradientHover" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#6890FF" Offset="0" />
+        <GradientStop Color="#AC82FF" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- Fuellstand eines Laufwerks: ab 75 % knapp, ab 90 % kritisch -->
+    <LinearGradientBrush x:Key="WarningGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#F6C25C" Offset="0" />
+        <GradientStop Color="#F08A4B" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DangerGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#FF8A5B" Offset="0" />
+        <GradientStop Color="#F0485E" Offset="1" />
+    </LinearGradientBrush>
+
+    <RadialGradientBrush x:Key="AmbientGlow">
+        <GradientStop Color="#404F7CFF" Offset="0" />
+        <GradientStop Color="#189A6BFF" Offset="0.55" />
+        <GradientStop Color="#00000000" Offset="1" />
+    </RadialGradientBrush>
+
+    <!-- Kaelte-Skala: warm = kuerzlich benutzt, kalt = lange nicht angefasst -->
+    <SolidColorBrush x:Key="ColdHot" Color="#F06B5A" />
+    <SolidColorBrush x:Key="ColdWarm" Color="#F0A85A" />
+    <SolidColorBrush x:Key="ColdCool" Color="#D6C35E" />
+    <SolidColorBrush x:Key="ColdCold" Color="#5AB0EC" />
+    <SolidColorBrush x:Key="ColdFrozen" Color="#7A76F0" />
+    <SolidColorBrush x:Key="ColdUnknown" Color="#4B5563" />
+
+    <!-- Balken in Tabelle und Uebersicht -->
+    <LinearGradientBrush x:Key="BarBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#4F7CFF" Offset="0" />
+        <GradientStop Color="#9A6BFF" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- Balken hinter dem Namen im Baum: Verlauf mit Transparenz, damit die Schrift
+         darauf lesbar bleibt und die Rangfolge trotzdem auf einen Blick sichtbar ist. -->
+    <LinearGradientBrush x:Key="TreeBar" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#664F7CFF" Offset="0" />
+        <GradientStop Color="#559A6BFF" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TreeBarSelected" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#AA4F7CFF" Offset="0" />
+        <GradientStop Color="#999A6BFF" Offset="1" />
+    </LinearGradientBrush>
+</ResourceDictionary>
